@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dog API Example</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .dog-image {
+            max-width: 300px;
+            max-height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="" alt="Dog" class="dog-image">
+    </div>
+
+    <script>
+        const dogImage = document.querySelector('.dog-image');
+
+        // Fetch random dog image from Dog API
+        fetchDogImage();
+
+        // Reload image on click
+        dogImage.addEventListener('click', () => {
+            fetchDogImage();
+        });
+
+        function fetchDogImage() {
+            fetch('https://dog.ceo/api/breeds/image/random')
+                .then(response => response.json())
+                .then(data => {
+                    dogImage.src = data.message;
+                })
+                .catch(error => console.error(error));
+        }
+    </script>
+</body>
+</html>
